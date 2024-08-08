@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from .models import InvestmentRecommendation,PortfolioAnalysis
+from .serializers import InvestmentRecommendationSerializer, PortfolioAnalysisSerializer
+class InvestmentRecommendationViewSet(viewsets.ModelViewSet):
+    queryset = InvestmentRecommendation.objects.all()
+    serializer_class = InvestmentRecommendationSerializer
 
-# Create your views here.
+class PortfolioAnalysisViewSet(viewsets.ModelViewSet):
+    queryset = PortfolioAnalysis.objects.all()
+    serializer_class = PortfolioAnalysisSerializer
