@@ -1,10 +1,13 @@
-from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import InvestmentRecommendationViewSet, PortfolioAnalysisViewSet
-router = DefaultRouter()
-router.register(r'investment-recommendations', InvestmentRecommendationViewSet)
-router.register(r'portfolio-analyses', PortfolioAnalysisViewSet)
+from .views import InvestmentViewSet,InvestmentRecommendationView,PortfolioAnalysisView
+from django.urls import path
 
-urlpatterns = [
-    path('', include(router.urls)),
+router = DefaultRouter()
+router.register(r'investments', InvestmentViewSet, basename='investment')
+
+urlpatterns = router.urls
+
+urlpatterns += [
+    path('investments/recommendations/', InvestmentRecommendationView.as_view(), name='investment-recommendations'),
+    path('investments/portfolio/', PortfolioAnalysisView.as_view(), name='portfolio-analysis'),
 ]

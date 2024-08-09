@@ -1,12 +1,7 @@
 from rest_framework import serializers
-from .models import InvestmentRecommendation, PortfolioAnalysis
+from .models import Investment
 
-class InvestmentRecommendationSerializer(serializers.ModelSerializer):
+class InvestmentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = InvestmentRecommendation
-        fields = '__all__'
-
-class PortfolioAnalysisSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PortfolioAnalysis
-        fields = '__all__'
+        model = Investment
+        fields = ['id', 'name', 'amount_invested', 'current_value', 'risk_level', 'purchase_date']
